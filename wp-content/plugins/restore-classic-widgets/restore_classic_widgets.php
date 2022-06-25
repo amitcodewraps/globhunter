@@ -2,7 +2,7 @@
 /*
 Plugin Name: Restore Classic Widgets
 Description: Description: Restore and enable the previous classic widgets settings screens and disables the Gutenberg block editor from managing widgets. No expiration date.
-Version: 1.5
+Version: 1.7
 Text Domain: restoreclassic
 Domain Path: /language
 Author: Bill Minozzi
@@ -72,6 +72,7 @@ if (is_admin() and !is_multisite() and !restore_classic_wptools_installed())
 */
 
 /*
+// only wptools
 function restore_classic_load_upsell()
 {
     if (is_admin()) {
@@ -105,9 +106,6 @@ function restorecw_init()
 function restorecw_plugin_row_meta($links, $file)
 {
 	if (strpos($file, 'restore_classic_widgets.php') !== false) {
-
-
-        // http://minozzi.eu/wp-admin/tools.php?page=restorecw_new_more_plugins
 
 		if (is_multisite()) 
 		    $url = admin_url() . "plugin-install.php?s=sminozzi&tab=search&type=author";
@@ -270,10 +268,10 @@ function restorecw_new_more_plugins()
 					echo '<br>';
 					echo '</td>';
 					echo '<td style="max-width:140px; max-height:140px;" >';
-					if (antihacker_plugin_installed($plugins_to_install[$i]["slug"]))
+					if (restore_plugin_installed($plugins_to_install[$i]["slug"]))
 						echo '<a href="#" class="button activate-now">Installed</a>';
 					else
-						echo '<a href="#" id="' . esc_attr($plugins_to_install[$i]["slug"]) . '"class="button button-primary ah-bill-install-now">Install</a>';
+						echo '<a href="#" id="' . esc_attr($plugins_to_install[$i]["slug"]) . '"class="button button-primary rc-bill-install-now">Install</a>';
 					echo '</td>';
 					if ($counter % 2 == 1) {
 						echo '<td style="width; 100px; border-left: 1px solid gray;">';
@@ -289,3 +287,36 @@ function restorecw_new_more_plugins()
 	</div>
 <?php
 }
+function restore_plugin_installed($slug)
+{
+	$all_plugins = get_plugins();
+	foreach ($all_plugins as $key => $value) {
+		$plugin_file = $key;
+		$slash_position = strpos($plugin_file, '/');
+		$folder = substr($plugin_file, 0, $slash_position);
+		// match FOLDER against SLUG
+		if ($slug == $folder) {
+			return true;
+		}
+	}
+	return false;
+
+
+}
+
+
+
+function restore_classic_load_upsell()
+{
+
+
+   
+
+        wp_enqueue_style('restore-more2', RESTORECLASSICURL . 'includes/more/more2.css');
+        wp_register_script('restore-more2-js', RESTORECLASSICURL . 'includes/more/more2.js', array('jquery'));
+        wp_enqueue_script('restore-more2-js');
+
+
+
+}
+add_action('admin_enqueue_scripts', 'restore_classic_load_upsell',1000);

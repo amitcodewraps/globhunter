@@ -12796,3 +12796,13 @@ textarea.form-control {
     border-radius: 15px;
 }
 }
+
+
+a.anck {
+    display: table-cell;
+    vertical-align: middle;
+    font-family: Open Sans;
+    font-size: 15px !important;
+    color: #000 !important;
+    line-height: 24px;
+}

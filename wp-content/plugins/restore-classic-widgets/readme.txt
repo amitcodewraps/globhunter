@@ -9,8 +9,8 @@ Author URI: https://BillMinozzi.com/
 Contributors: sminozzi
 Requires at least: 5.4
 Tested up to: 6.0
-Stable tag: 1.5
-Version: 1.5
+Stable tag: 1.7
+Version: 1.7
 Requires PHP: 5.6.20
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 License: GPL v2 or later
@@ -100,6 +100,7 @@ There is no going back, so be sure this is what you want. The former blocks will
 
 
 == Changelog ==
+** 1.6/1.7  2022-06-10 -  Small bug fixed
 ** 1.5 2022-05-06 -  Minor Improvements
 ** 1.4 2021-11-30 -  Bug Fixed Line 51 old version **
 ** 1.3 2021-11-14 -  Minor Improvements **
